@@ -6,7 +6,7 @@ const RandomPlanet = () => {
     return (
         <div className="random-planet jumbotron rounded">
             <img className="planet-image"
-                src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
+                src={`https://starwars-visualguide.com/assets/img/planets/6.jpg`} />
             <div>
                 <h4>Earth</h4>
                 <ul className="list-group list-group-flush">
