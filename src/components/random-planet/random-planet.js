@@ -9,17 +9,19 @@ import './random-planet.css';
 export default class RandomPlanet extends React.Component {
 
     constructor(props) {
-        super(props);
-
-        this.swapiService = new SwapiService();
+        super(props);      
 
         this.state = {
             planet: {},
             loading: true,
             error: false
-        };
+        };        
+    }
 
+    componentDidMount(){
+        this.swapiService = new SwapiService();
         this.updatePlanet();
+        setInterval(this.updatePlanet, 3000);
     }
 
     onPlanetLoaded = (planet) => {
@@ -36,9 +38,9 @@ export default class RandomPlanet extends React.Component {
         });
     }
 
-    updatePlanet() {
-        // const id = Math.floor(Math.random() * 25 + 2);
-        const id = 5;
+    updatePlanet = () => {
+        const id = Math.floor(Math.random() * 25 + 2);
+        // const id = 5;
         this.swapiService.getPlanet(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError);
