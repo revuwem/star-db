@@ -3,6 +3,7 @@ import React from 'react';
 import './person-details.css';
 import SwapiService from '../../services/swapi-service';
 import ErrorButton from '../error-button';
+import Spinner from '../spinner';
 
 export default class PersonDetails extends React.Component {
 
@@ -11,6 +12,7 @@ export default class PersonDetails extends React.Component {
 
         this.state = {
             person: null,
+            loading: true
         }
     }
 
@@ -34,13 +36,17 @@ export default class PersonDetails extends React.Component {
         this.swapiService
             .getPerson(personId)
             .then((person) => {
-                this.setState({ person });
+                this.setState({ person, loading: false });
             });
     }
 
     render() {
         if (!this.state.person){
             return <span>Select a person from a list</span>;
+        }
+
+        if(this.state.loading){
+            return <Spinner />;
         }
 
         const {id, name, gender, birthYear, eyeColor} = this.state.person;
