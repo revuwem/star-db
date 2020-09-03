@@ -2,6 +2,7 @@ import React from 'react';
 
 import './person-details.css';
 import SwapiService from '../../services/swapi-service';
+import ErrorButton from '../error-button';
 
 export default class PersonDetails extends React.Component {
 
@@ -64,6 +65,7 @@ export default class PersonDetails extends React.Component {
                             <span>{eyeColor}</span>
                         </li>
                     </ul>
+                    <ErrorButton />
                 </div>
             </div>
         );
