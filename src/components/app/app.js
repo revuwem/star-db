@@ -34,6 +34,8 @@ export default class App extends React.Component {
                 <Header />
                 <RandomPlanet />
                 <ErrorButton />  
+                <PeoplePage />  
+                <PeoplePage />  
                 <PeoplePage />              
             </div>
         );
