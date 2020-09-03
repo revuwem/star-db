@@ -12,10 +12,16 @@ export default class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            
+            selectedPerson: null
         }
     }
 
+    onPersonSelected = (id) => {
+        console.log('selected person is ', id);
+        this.setState({
+            selectedPerson: id
+        })
+    }
    
     render() {
         return (
@@ -25,10 +31,10 @@ export default class App extends React.Component {
 
                 <div className="row mb-2">
                     <div className="col-md-6">
-                        <ItemList />
+                        <ItemList onItemSelected={this.onPersonSelected}/>
                     </div>
                     <div className="col-md-6">
-                        <PersonDetails />
+                        <PersonDetails personId={this.state.selectedPerson}/>
                     </div>
                 </div>
             </div>
