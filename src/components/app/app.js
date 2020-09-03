@@ -2,8 +2,7 @@ import React from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import PeoplePage from '../people-page';
 import ErrorIndicator from '../error-indicator';
 import ErrorButton from '../error-button';
 
@@ -13,8 +12,7 @@ export default class App extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            selectedPerson: null,
+        this.state = {            
             hasError: false
         }
     }
@@ -25,13 +23,7 @@ export default class App extends React.Component {
         })
     }
 
-    onPersonSelected = (id) => {
-        console.log('selected person is ', id);
-        this.setState({
-            selectedPerson: id
-        })
-    }
-   
+    
     render() {
         if(this.state.hasError){
             return <ErrorIndicator />;
@@ -41,15 +33,8 @@ export default class App extends React.Component {
             <div>
                 <Header />
                 <RandomPlanet />
-                <ErrorButton />
-                <div className="row mb-2">
-                    <div className="col-md-6">
-                        <ItemList onItemSelected={this.onPersonSelected}/>
-                    </div>
-                    <div className="col-md-6">
-                        <PersonDetails personId={this.state.selectedPerson}/>
-                    </div>
-                </div>
+                <ErrorButton />  
+                <PeoplePage />              
             </div>
         );
     }
