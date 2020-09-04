@@ -12,17 +12,16 @@ export default class ItemList extends React.Component {
         super(props);
 
         this.state = {
-            peopleList: null
+            itemList: null
         }
     }
 
     componentDidMount() {
-        this.swapiService = new SwapiService();
-        this.swapiService
-            .getAllPeople()
-            .then((peopleList) => {
+        const {getData} = this.props;        
+        getData()            
+            .then((itemList) => {
                 this.setState({
-                    peopleList
+                    itemList
                 });
             });
     }
@@ -41,12 +40,12 @@ export default class ItemList extends React.Component {
 
     render() {
 
-        const { peopleList } = this.state;
-        if (!peopleList) {
+        const { itemList } = this.state;
+        if (!itemList) {
             return <Spinner />;
         }
 
-        const items = this.renderItems(peopleList);
+        const items = this.renderItems(itemList);
 
         return (
             <ul className="item-list list-group">
