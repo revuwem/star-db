@@ -12,6 +12,7 @@ import './app.css';
 
 import ErrorBoundry from '../error-boundry/error-boundry';
 import ErrorButton from '../error-button';
+import { PlanetList, PersonList, StarshipList, PersonDetails, PlanetDetails, StarshipDetails } from '../sw-components';
 
 
 
@@ -31,19 +32,14 @@ export default class App extends React.Component {
             <ErrorBoundry>
                 <div>
                     <Header />
-                    <RandomPlanet />
-                    <ErrorButton />
-                    <PeoplePage />
 
-                    <Row left={
-                        <ItemList
-                            onItemSelected={null}
-                            getData={this.swapiService.getAllPlanets}>
-                            {(item) => (
-                                `${item.name}`
-                            )}
-                        </ItemList>
-                    } />
+                    <PersonDetails itemId={11}/>
+                    <PlanetDetails itemId={5} />
+                    <StarshipDetails itemId={5} />
+
+                    <PersonList />
+                    <PlanetList />
+                    <StarshipList />
 
                 </div>
             </ErrorBoundry>
