@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemList from '../item-list';
-import {getWrappedData} from '../hoc-helpers';
+import {withData} from '../hoc-helpers';
 import SwapiService from '../../services/swapi-service';
 
 const swapiService = new SwapiService();
@@ -11,11 +11,11 @@ const {
     getAllStarships
 } = swapiService;
 
-const PersonList = getWrappedData(ItemList, getAllPeople);
+const PersonList = withData(ItemList, getAllPeople);
 
-const PlanetList = getWrappedData(ItemList, getAllPlanets);
+const PlanetList = withData(ItemList, getAllPlanets);
 
-const StarshipList = getWrappedData(ItemList, getAllStarships);
+const StarshipList = withData(ItemList, getAllStarships);
 
 export {
     PersonList,
