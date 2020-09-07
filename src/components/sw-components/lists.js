@@ -19,20 +19,21 @@ const withChildFunction = (Wrapped, fn) =>{
     }
 };
 
-const renderLabel = ({name}) => <span>{name}</span>;  
-
+const renderPersonListItemLabel = ({name}) => <span>{name}</span>;  
 const PersonList = withData(
-        withChildFunction(ItemList, renderLabel), 
+        withChildFunction(ItemList, renderPersonListItemLabel), 
         getAllPeople
 );
 
+const renderPlanetListItemLabel = ({name, population}) => <span>{name} ({population})</span>;
 const PlanetList = withData(
-        withChildFunction(ItemList, renderLabel), 
+        withChildFunction(ItemList, renderPlanetListItemLabel), 
         getAllPlanets
 );
 
+const renderStarshipListItemLabel = ({name, model}) => <span>{name} - {model}</span>;
 const StarshipList = withData(
-            withChildFunction(ItemList, renderLabel), 
+            withChildFunction(ItemList, renderStarshipListItemLabel), 
             getAllStarships
 );
 
