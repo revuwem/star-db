@@ -2,7 +2,7 @@ import React from 'react';
 
 import Spinner from '../spinner';
 
-const getWrappedData = (View, getData) => {
+const withData = (View, getData) => {
     return class extends React.Component {
         constructor(props) {
             super(props);
@@ -32,4 +32,4 @@ const getWrappedData = (View, getData) => {
     };
 };
 
-export default getWrappedData;
+export default withData;
