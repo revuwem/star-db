@@ -1,14 +1,18 @@
 import React from 'react';
 
-import ErrorIndicator from '../error-indicator';
 import Header from '../header';
+import RandomPlanet from '../random-planet';
+import PeoplePage from '../people-page';
+import ItemList from '../item-list';
+import Row from '../row';
 
 import SwapiService from '../../services/swapi-service';
 
 import './app.css';
-import Row from '../row';
-import ItemDetails, { Record } from '../item-details';
+
 import ErrorBoundry from '../error-boundry/error-boundry';
+import ErrorButton from '../error-button';
+
 
 
 
@@ -22,46 +26,24 @@ export default class App extends React.Component {
 
     swapiService = new SwapiService();
 
-    render() {        
-        const { getPerson, getPersonImage, getStarship, getStarshipImage } = this.swapiService;
-
-        const personDetais = (
-            <ItemDetails
-                itemId={11}
-                getData={getPerson}
-                getImageUrl={getPersonImage}>
-
-                <Record field="gender" label="Gender" />
-                <Record field="birthYear" label="Birth Year" />
-                <Record field="eyeColor" label="Eye Color" />
-
-            </ItemDetails>
-        );
-
-        const starshipDetails = (
-            <ItemDetails
-                itemId={5}
-                getData={getStarship}
-                getImageUrl={getStarshipImage}>
-
-                <Record field="model" label="Model" />
-                <Record field="crew" label="Crew" />
-                <Record field="costInCredits" label="Cost" />
-
-            </ItemDetails>
-        );
-
+    render() {
         return (
             <ErrorBoundry>
                 <div>
                     <Header />
-                    {/* <RandomPlanet />
-                <ErrorButton />
-                <PeoplePage /> */}
+                    <RandomPlanet />
+                    <ErrorButton />
+                    <PeoplePage />
 
-                    <Row
-                        left={personDetais}
-                        right={starshipDetails} />
+                    <Row left={
+                        <ItemList
+                            onItemSelected={null}
+                            getData={this.swapiService.getAllPlanets}>
+                            {(item) => (
+                                `${item.name}`
+                            )}
+                        </ItemList>
+                    } />
 
                 </div>
             </ErrorBoundry>
