@@ -1,5 +1,5 @@
-import getWrappedData from './get-wrapped-data';
+import withData from './with-data';
 
 export {
-    getWrappedData,
+    withData,
 }
