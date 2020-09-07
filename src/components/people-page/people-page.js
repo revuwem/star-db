@@ -35,7 +35,7 @@ export default class PeoplePage extends React.Component {
                 onItemSelected={this.onPersonSelected}
                 getData={getAllPeople}>
                 {(item) => (
-                    `${item.name}, ${item.birthYear})`
+                    `${item.name}, ${item.birthYear}`
                 )}
             </ItemList>
         );
