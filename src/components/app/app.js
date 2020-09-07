@@ -8,6 +8,7 @@ import SwapiService from '../../services/swapi-service';
 import './app.css';
 import Row from '../row';
 import ItemDetails, { Record } from '../item-details';
+import ErrorBoundry from '../error-boundry/error-boundry';
 
 
 
@@ -16,25 +17,12 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            hasError: false
-        }
+        this.state = {}
     }
 
     swapiService = new SwapiService();
 
-    componentDidCatch() {
-        this.setState({
-            hasError: true
-        })
-    }
-
-
-    render() {
-        if (this.state.hasError) {
-            return <ErrorIndicator />;
-        }
-
+    render() {        
         const { getPerson, getPersonImage, getStarship, getStarshipImage } = this.swapiService;
 
         const personDetais = (
@@ -63,17 +51,19 @@ export default class App extends React.Component {
         );
 
         return (
-            <div>
-                <Header />
-                {/* <RandomPlanet />
+            <ErrorBoundry>
+                <div>
+                    <Header />
+                    {/* <RandomPlanet />
                 <ErrorButton />
                 <PeoplePage /> */}
 
-                <Row
-                    left={personDetais}
-                    right={starshipDetails} />
+                    <Row
+                        left={personDetais}
+                        right={starshipDetails} />
 
-            </div>
+                </div>
+            </ErrorBoundry>
         );
     }
 }
