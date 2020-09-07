@@ -7,35 +7,29 @@ import './item-list.css';
 
 
 // This class has props onItemSelected, getData and props.children render-function
-class ItemList extends React.Component {
+const ItemList = (props) => {
+    const { data, onItemSelected, children: renderLabel } = props;
 
-    renderItems(arr) {
-        return arr.map((item) => {
-
-            const { id } = item;
-
-            const label = this.props.children(item);
-            return (
-                <li className="list-group-item"
-                    key={id}
-                    onClick={() => this.props.onItemSelected(id)}>
-                    {label}
-                </li>
-            );
-        })
-    }
-
-    render() {
-
-        const items = this.renderItems(itemList);
+    const items = data.map((item) => {
+        const { id } = item;
+        const label = renderLabel(item);
 
         return (
-            <ul className="item-list list-group">
-                {items}
-            </ul>
+            <li className="list-group-item"
+                key={id}
+                onClick={() => onItemSelected(id)}>
+                {label}
+            </li>
         );
-    }
+    });
+
+    return (
+        <ul className="item-list list-group">
+            {items}
+        </ul>
+    );
 }
+
 
 const getWrappedData = (View) => {
     return class extends React.Component {
