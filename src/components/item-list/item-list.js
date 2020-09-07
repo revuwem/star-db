@@ -1,7 +1,7 @@
 import React from 'react';
 
+import {getWrappedData} from '../hoc-helpers';
 import SwapiService from '../../services/swapi-service';
-import Spinner from '../spinner';
 
 import './item-list.css';
 
@@ -30,36 +30,6 @@ const ItemList = (props) => {
     );
 }
 
+const {getAllPeople} = new SwapiService();
 
-const getWrappedData = (View) => {
-    return class extends React.Component {
-        constructor(props) {
-            super(props);
-
-            this.state = {
-                data: null
-            }
-        }
-
-        componentDidMount() {
-            const { getData } = this.props;
-            getData()
-                .then((data) => {
-                    this.setState({
-                        data
-                    });
-                });
-        }
-
-        render() {
-            const { data } = this.state;
-            if (!data) {
-                return <Spinner />;
-            }
-
-            return <View {...this.props} data={data} />
-        }
-    };
-}
-
-export default getWrappedData(ItemList);
+export default getWrappedData(ItemList, getAllPeople);
