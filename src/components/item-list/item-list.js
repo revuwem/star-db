@@ -1,8 +1,5 @@
 import React from 'react';
 
-import {getWrappedData} from '../hoc-helpers';
-import SwapiService from '../../services/swapi-service';
-
 import './item-list.css';
 
 
@@ -30,6 +27,4 @@ const ItemList = (props) => {
     );
 }
 
-const {getAllPeople} = new SwapiService();
-
-export default getWrappedData(ItemList, getAllPeople);
+export default ItemList;
