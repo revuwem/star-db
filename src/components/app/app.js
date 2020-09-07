@@ -32,6 +32,7 @@ export default class App extends React.Component {
                 getImageUrl={getPersonImage}>
 
                 <Record field="gender" label="Gender" />
+                <Record field="birthYear" label="Birth Year" />
                 <Record field="eyeColor" label="Eye Color" />
 
             </ItemDetails>
