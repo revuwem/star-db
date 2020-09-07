@@ -68,7 +68,7 @@ export default class ItemDetails extends React.Component {
             return <Spinner />;
         }
 
-        const { id, name, gender, birthYear, eyeColor } = item;
+        const { name } = item;
         return (
             <div className="item-details card">
                 <img className="item-image"
