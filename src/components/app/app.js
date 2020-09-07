@@ -14,6 +14,7 @@ import ErrorBoundry from '../error-boundry/error-boundry';
 import ErrorButton from '../error-button';
 import { PlanetList, PersonList, StarshipList, PersonDetails, PlanetDetails, StarshipDetails } from '../sw-components';
 
+import { SwapiServiceProvider } from '../swapi-service-context';
 
 
 
@@ -30,18 +31,20 @@ export default class App extends React.Component {
     render() {
         return (
             <ErrorBoundry>
-                <div>
-                    <Header />
+                <SwapiServiceProvider value={this.swapiService}>
+                    <div>
+                        <Header />
 
-                    <PersonDetails itemId={11}/>
-                    <PlanetDetails itemId={5} />
-                    <StarshipDetails itemId={5} />
+                        <PersonDetails itemId={11} />
+                        <PlanetDetails itemId={5} />
+                        <StarshipDetails itemId={5} />
 
-                    <PersonList />
-                    <PlanetList />
-                    <StarshipList />
+                        <PersonList />
+                        <PlanetList />
+                        <StarshipList />
 
-                </div>
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundry>
         );
     }
