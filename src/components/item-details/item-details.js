@@ -12,6 +12,7 @@ export default class ItemDetails extends React.Component {
 
         this.state = {
             item: null,
+            image: null,
             loading: true
         }
     }
@@ -28,32 +29,36 @@ export default class ItemDetails extends React.Component {
     }
 
     updateItem = () => {
-        const { itemId } = this.props;
+        const { itemId, getData, getImageUrl } = this.props;
         if (!itemId) {
             return;
         }
 
-        this.swapiService
-            .getPerson(itemId)
+        getData(itemId)
             .then((item) => {
-                this.setState({ item, loading: false });
+                this.setState({ 
+                    item,
+                    image: getImageUrl(item),
+                    loading: false });
             });
     }
 
     render() {
-        if (!this.state.item){
-            return <span>Select a person from a list</span>;
+
+        const {item, image, loading} = this.state;
+        if (!item){
+            return <span>Select an item from a list</span>;
         }
 
-        if(this.state.loading){
+        if(loading){
             return <Spinner />;
         }
 
-        const {id, name, gender, birthYear, eyeColor} = this.state.item;
+        const {id, name, gender, birthYear, eyeColor} = item;
         return (
             <div className="item-details card">
                 <img className="item-image"
-                    src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+                    src={image} />
 
                 <div className="card-body">
                     <h4>{name}</h4>
