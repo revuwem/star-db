@@ -7,6 +7,7 @@ import ItemList from '../item-list';
 import Row from '../row';
 
 import SwapiService from '../../services/swapi-service';
+import DummmySwapiService from '../../services/dummy-swapi-service';
 
 import './app.css';
 
@@ -23,17 +24,29 @@ export default class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
-    }
+        this.state = {
+            swapiService: new SwapiService()
+        }
+    }   
 
-    swapiService = new SwapiService();
+    onServiceChange = () => {
+        this.setState(({swapiService})=>{
+            const Service = swapiService instanceof SwapiService ?
+                                DummmySwapiService : SwapiService;
+
+            console.log('Switched to', Service.name);
+            return{
+                swapiService: new Service()
+            }
+        })
+    }
 
     render() {
         return (
             <ErrorBoundry>
-                <SwapiServiceProvider value={this.swapiService}>
+                <SwapiServiceProvider value={this.state.swapiService}>
                     <div>
-                        <Header />
+                        <Header onServiceChange={this.onServiceChange}/>
 
                         <PersonDetails itemId={11} />
                         <PlanetDetails itemId={5} />
