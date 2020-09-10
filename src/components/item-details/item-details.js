@@ -74,7 +74,7 @@ export default class ItemDetails extends React.Component {
         return (
             <div className="item-details card">
                 <img className="item-image"
-                    src={image} />
+                    src={image} alt="" />
 
                 <div className="card-body">
                     <h4>{name}</h4>
