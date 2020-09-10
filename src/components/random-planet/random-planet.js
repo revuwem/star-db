@@ -8,6 +8,10 @@ import './random-planet.css';
 
 export default class RandomPlanet extends React.Component {
 
+    static defaultProps = {
+        updateInterval: 5000
+    };
+
     constructor(props) {
         super(props);      
 
@@ -19,9 +23,10 @@ export default class RandomPlanet extends React.Component {
     }
 
     componentDidMount(){
+        const {updateInterval} = this.props;
         this.swapiService = new SwapiService();
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet, 3000);
+        this.interval = setInterval(this.updatePlanet, updateInterval);
     }
 
     componentWillUnmount(){
@@ -70,7 +75,6 @@ export default class RandomPlanet extends React.Component {
         );
     }
 }
-
 
 const PlanetView = ({ planet }) => {
 
