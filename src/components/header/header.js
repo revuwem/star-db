@@ -1,15 +1,15 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './header.css';
 
-const Header = ({onServiceChange}) => {
+const Header = ({ onServiceChange }) => {
     return (
         <div className="header d-flex">
             <h3>
-                <a href="index.html">
+                <Link to="/">
                     StarDB
-            </a>
+                </Link>
             </h3>
             <ul className="d-flex">
                 <li>
@@ -23,9 +23,9 @@ const Header = ({onServiceChange}) => {
                 </li>
             </ul>
 
-            <button 
-                    onClick={onServiceChange}
-                    className="btn btn-primary btn-sm">
+            <button
+                onClick={onServiceChange}
+                className="btn btn-primary btn-sm">
                 Swap service
             </button>
         </div>
